@@ -11,10 +11,10 @@ class CardView extends StatelessWidget {
       children: <Widget>[
         Icon(
           x,
-          size: 80.0,
+          size: 50.0,
         ),
         SizedBox(
-          height: 15.0,
+          height: 8.0,
         ),
         Text(
           y,

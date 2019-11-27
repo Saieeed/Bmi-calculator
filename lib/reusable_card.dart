@@ -12,9 +12,9 @@ class ReusableWidge extends StatelessWidget {
           onTap :onPress,
           child: Container(
           child: cardChild,
-          margin: EdgeInsets.all(10.0),
+          margin: EdgeInsets.all(5.0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(5.0),
             color: colour,
           )
           ),
