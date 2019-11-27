@@ -219,25 +219,30 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FlatButton(
-                onPressed: () {
-                  if (gendertype == Gender.male) {
-                    bestweight = 50 + (0.91 * (number - 152.4));
-                  } else {
-                    bestweight = 45.5 + (0.91 * (number - 152.4));
-                  }
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return AlertDialog(
-                      title: Text("the best weight for you is "),
-                      content: Text(bestweight.toString()),
-                    );
-                  }));
-                  //print(bestweight);
-                },
-                child: Text('Calculate'),
-                padding: EdgeInsets.all(50.0),
-                color: Colors.pink,
+              padding: const EdgeInsets.all(15.0),
+              child: SizedBox(
+                width: 100.0,
+                height: 120.0,
+                child: FlatButton(
+                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(90.0)),
+                  onPressed: () {
+                    if (gendertype == Gender.male) {
+                      bestweight = 50 + (0.91 * (number - 152.4));
+                    } else {
+                      bestweight = 45.5 + (0.91 * (number - 152.4));
+                    }
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return AlertDialog(
+                        title: Text("the best weight for you is "),
+                        content: Text(bestweight.toString()),
+                      );
+                    }));
+                    //print(bestweight);
+                  },
+                  child: Text('Calculate'),
+                  padding: EdgeInsets.all(50.0),
+                  color: Colors.pink,
+                ),
               ),
             )
           ],
