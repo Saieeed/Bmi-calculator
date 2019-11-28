@@ -1,8 +1,12 @@
+import 'package:bmi_calculator/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart' show ReusableWidge;
 import 'Icon_card.dart' show CardView;
 import 'constants.dart';
+import 'round_button.dart';
+import 'result_page.dart';
+import 'sumit_button.dart';
 
 Gender gendertype;
 
@@ -13,17 +17,11 @@ class InputPage extends StatefulWidget {
   _InputPageState createState() => _InputPageState();
 }
 
-Widget star(BuildContext context) {
-  return AlertDialog(
-    title: Text("the best weight for you is "),
-    content: Text(bestweight.toString()),
-  );
-}
+
 
 int number = 130;
 int weight = 60;
 int age = 20;
-double bestweight;
 
 class _InputPageState extends State<InputPage> {
   @override
@@ -38,6 +36,7 @@ class _InputPageState extends State<InputPage> {
           children: <Widget>[
             Container(
               child: Expanded(
+                flex: 2,
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -50,7 +49,7 @@ class _InputPageState extends State<InputPage> {
                       colour: gendertype == Gender.male
                           ? kInactivecolor
                           : kActivecolor,
-                      cardChild: CardView(
+                         cardChild: CardView(
                         x: FontAwesomeIcons.mars,
                         y: "Male",
                       ),
@@ -77,9 +76,10 @@ class _InputPageState extends State<InputPage> {
             ),
             Container(
               child: Expanded(
+                flex: 3,
                   child: ReusableWidge(
                 colour: kActivecolor,
-                cardChild: Column(
+                  cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
@@ -129,6 +129,7 @@ class _InputPageState extends State<InputPage> {
             ),
             Container(
               child: Expanded(
+                flex: 3,
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -223,26 +224,18 @@ class _InputPageState extends State<InputPage> {
               child: SizedBox(
                 width: 100.0,
                 height: 120.0,
-                child: FlatButton(
-                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(90.0)),
-                  onPressed: () {
-                    if (gendertype == Gender.male) {
-                      bestweight = 50 + (0.91 * (number - 152.4));
-                    } else {
-                      bestweight = 45.5 + (0.91 * (number - 152.4));
-                    }
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return AlertDialog(
-                        title: Text("the best weight for you is "),
-                        content: Text(bestweight.toString()),
-                      );
-                    }));
-                    //print(bestweight);
-                  },
-                  child: Text('Calculate'),
-                  padding: EdgeInsets.all(50.0),
-                  color: Colors.pink,
-                ),
+                child:
+                submit_button(onPressed:() {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return new ResultPage();
+/*
+            AlertDialog(
+            title: Text("the best weight for you is "),
+            content: Text(bestweight.toString()),
+          );
+           */
+                  }));
+                } , text: 'Calculate',),
               ),
             )
           ],
@@ -250,22 +243,4 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({@required this.icon, @required this.onpressed});
-  final IconData icon;
-  final Function onpressed;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      elevation: 1.0,
-      onPressed: onpressed,
-      constraints: BoxConstraints.tightFor(
-        width: 36,
-        height: 36,
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-    );
-  }
-}
+// ignore: camel_case_types
